@@ -4,7 +4,7 @@ Tiny Node native addon that hides the macOS OS cursor without requiring Accessib
 
 On macOS it calls `CGDisplayHideCursor(kCGDirectMainDisplay)` / `CGDisplayShowCursor(kCGDirectMainDisplay)`. The cursor is hidden while the calling app is the foreground app — exactly what a kiosk wants.
 
-On Windows and Linux the addon compiles as a no-op stub so a single dependency works cross-platform.
+macOS only. The package's `os` field restricts npm install to Darwin; on Windows or Linux npm will skip it entirely (no native build attempted).
 
 ## Install
 
@@ -23,8 +23,8 @@ npx electron-rebuild -m node_modules/mac-hide-cursor
 ```js
 const { hideCursor, showCursor } = require("mac-hide-cursor")
 
-hideCursor()  // CGDisplayHideCursor on macOS, no-op elsewhere
-showCursor()  // CGDisplayShowCursor on macOS, no-op elsewhere
+hideCursor()  // CGDisplayHideCursor
+showCursor()  // CGDisplayShowCursor
 ```
 
 `CGDisplayHideCursor` is reference-counted per process and reset on app deactivation. For a kiosk, call `hideCursor()` once at startup and again on every window `focus` / `show` event.

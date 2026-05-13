@@ -1,12 +1,13 @@
 {
   "name": "mac-hide-cursor",
-  "version": "1.0.0",
-  "description": "Tiny Node native addon for hiding the macOS cursor without Accessibility permission (CGDisplayHideCursor). No-op stub on Windows/Linux.",
+  "version": "1.0.1",
+  "description": "Tiny Node native addon for hiding the macOS cursor without Accessibility permission (CGDisplayHideCursor). macOS only.",
   "main": "index.js",
   "scripts": {
     "install": "node-gyp rebuild"
   },
   "gypfile": true,
+  "os": ["darwin"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OutOfAxis/mac-hide-cursor.git"
