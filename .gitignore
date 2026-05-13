@@ -1,3 +1,5 @@
 node_modules/
 build/
-*.node
+# prebuilds/ is tracked: prebuilt N-API binaries are committed so consumers
+# don't have to build from source. The local node-gyp output under build/
+# is still ignored.

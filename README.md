@@ -12,11 +12,33 @@ macOS only. The package's `os` field restricts npm install to Darwin; on Windows
 npm install OutOfAxis/mac-hide-cursor
 ```
 
-For Electron projects, rebuild against Electron's V8 ABI after install:
+The package ships prebuilt N-API binaries under `prebuilds/darwin-arm64/` and `prebuilds/darwin-x64/`, so no compilation or `electron-rebuild` is needed on the consumer side. N-API binaries are ABI-stable across Node and Electron versions.
+
+If prebuilds are missing for some reason, the `install` script falls back to building from source via `node-gyp-build`.
+
+## Building prebuilds (maintainers only)
+
+Run on macOS — Xcode toolchain can cross-compile to both arches:
 
 ```
-npx electron-rebuild -m node_modules/mac-hide-cursor
+npm install
+npm run prebuild
 ```
+
+This produces:
+
+- `prebuilds/darwin-arm64/<name>.node`
+- `prebuilds/darwin-x64/<name>.node`
+
+Commit and push:
+
+```
+git add prebuilds/
+git commit -m "Rebuild prebuilds"
+git push
+```
+
+Consumers pulling the package via `npm install` will then pick up the prebuilt binary for their arch — no native build needed.
 
 ## Usage
 
