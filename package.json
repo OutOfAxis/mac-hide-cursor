@@ -1,6 +1,6 @@
 {
   "name": "mac-hide-cursor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tiny Node native addon for hiding the macOS cursor without Accessibility permission (CGDisplayHideCursor). macOS only.",
   "main": "index.js",
   "scripts": {
